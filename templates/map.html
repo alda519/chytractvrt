@@ -1,0 +1,31 @@
+{% extends 'application.html' %}
+
+{% block title %}Chytrá čtvrť - interaktivní mapa{% endblock %}
+
+{% block yield %}
+
+<div class="top">
+
+    <img src="/logo.png" width="120" height="120">
+
+    <a href="/index">AAA</a>
+    <a href="/raz">BBB</a>
+    <a href="/dva">CCC</a>
+    <a href="/tri">DDD</a>
+
+</div>
+
+<div class="content">
+    
+    <div id="map"></div>
+
+    <div class="control">
+        <ul>
+            <li> raz
+            <li> dva
+            <li> tri
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
