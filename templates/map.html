@@ -1,10 +1,19 @@
 {% extends 'application.html' %}
 
-{% block title %}Chytrá čtvrť - Nový Lískovec - interaktivní mapa{% endblock %}
+{% block title %}{{ super() }} - interaktivní mapa{% endblock %}
+
+{% block styles %}
+{{ super () }}
+<link href='/leaflet.css' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script src="/leaflet.js"></script>
+<script src="/map.js"></script>
+{% endblock %}
 
 {% block yield %}
-
-
 <div class="logo">
     <a href="/">
         <img src="static/logo.png" width="150" height="290" alt="Nový Lískovec - Chytrá čtvrť" title="Nový Lískovec - Chytrá čtvrť">
@@ -28,8 +37,8 @@
     </div>
 
     <div class="right">
-        <input type="checkbox"> volný čas <br>
-        <input type="checkbox"> stravování a ubytování <br>
+        <input type="checkbox" onchange="onchange_callback(1);" id="category1"> volný čas <br>
+        <input type="checkbox" onchange="onchange_callback(2);" id="category2"> stravování a ubytování <br>
         <input type="checkbox"> domácí zvířata <br>
         <input type="checkbox"> doprava <br>
         <input type="checkbox"> odpady, úklid, údržba <br>

@@ -38,6 +38,7 @@ body {
 .right {
   flex: 0 1 400px;
   padding: 20px;
+    font-size: x-large;
 }
 
 
