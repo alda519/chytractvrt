@@ -29,7 +29,7 @@ def test():
     cursor = conn.cursor()
     cursor.execute('select * from categories;')
     records = cursor.fetchall()
-    return "<strong>It's Alive!</strong> " + ( ';'.join([x[1] for x in records])")
+    return "<strong>It's Alive!</strong> " + (';'.join([x[1] for x in records]))
 
 if __name__ == '__main__':
     app.run()
