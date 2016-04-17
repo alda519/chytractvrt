@@ -52,7 +52,7 @@ def points(id=None):
         return render_template('points.html')
     else:
         # get 1 nebo seznam vsech
-        if id in not None:
+        if id is not None:
             return render_template('point.html')
         else:
             return render_template('points.html')
