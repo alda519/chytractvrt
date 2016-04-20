@@ -11,7 +11,7 @@ function onchange_callback(cat_id) {
         console.log('yes');
         $.getJSON('getpoints/' + cat_id, function(data) {
             $.each(data, function(p, p_value) {
-                marker = new L.marker([p_value.lat, p_value.lng - 0.01])
+                marker = new L.marker([p_value.lat, p_value.lng])
                 marker.addTo(map);
                 points[cat_id].push(marker);
                 console.log(points[cat_id].length);

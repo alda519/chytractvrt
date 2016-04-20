@@ -23,7 +23,9 @@ def teardown_request(exception):
 @app.route('/')
 @app.route('/mapa')
 def index():
-    return render_template('map.html')
+    g.sql.execute('select id, name from categories;')
+    records = [(r[0], r[1].decode('utf8')) for r in g.sql.fetchall()]
+    return render_template('map.html', categories = records)
 
 @app.route('/okoli')
 def okoli():
@@ -62,18 +64,20 @@ def serveStaticResource(resource):
 
 @app.route("/test")
 def test():
-    conn = psycopg2.connect(DB_STR)
-    cursor = conn.cursor()
-    cursor.execute('select * from categories;')
-    records = cursor.fetchall()
-    return "<strong>It's Alive!</strong> " + (';'.join([x[1] for x in records]))
+    g.sql.execute('select * from categories;')
+    records = g.sql.fetchall()
+    return "<strong>It's Alive!</strong> " + (';'.join([str(x[1]) for x in records]))
 
 @app.route("/getpoints/<category>")
 def getpoints(category):
-    if int(category) == 1:
-        return '[{"name": "uno", "lat": 49.1791, "lng": 16.5554, "cat": 1}, {"name": "uno", "lat": 49.1781, "lng": 16.5544, "cat": 1}, {"name": "uno", "lat": 49.1771, "lng": 16.5534, "cat": 1}]'
-    else:
-        return '[{"name": "uno", "lat": 49.1722, "lng": 16.5534, "cat": 2}, {"name": "uno", "lat": 49.1711, "lng": 16.5534, "cat": 2}, {"name": "uno", "lat": 49.1701, "lng": 16.5534, "cat": 2}]'
+    g.sql.execute('select points.id, points.lat, points.lng, points.name from points left join subcategories on points.subcategory_id = subcategories.id left join categories on subcategories.category_id = categories.id where categories.id = {}'.format(int(category)))
+    return "[" + ",".join(
+        ['{{"id": {}, "lat": {}, "lng": {}, "name": "{}", "cat": {}}}'.format(
+            r[0], r[1], r[2], r[3], int(category)
+        ) for r in g.sql.fetchall()]
+    ) + "]"
+    # TODO cat?? ^^
+
 
 
 if __name__ == '__main__':

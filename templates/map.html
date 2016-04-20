@@ -7,13 +7,7 @@
 {% endblock %}
 
 {% block yield %}
-        <input type="checkbox" onchange="onchange_callback(1);" id="category1"> volný čas <br>
-        <input type="checkbox" onchange="onchange_callback(2);" id="category2"> stravování a ubytování <br>
-        <input type="checkbox"> domácí zvířata <br>
-        <input type="checkbox"> doprava <br>
-        <input type="checkbox"> odpady, úklid, údržba <br>
-        <input type="checkbox"> prodejny <br>
-        <input type="checkbox"> školství <br>
-        <input type="checkbox"> služby <br>
-        <input type="checkbox"> krása a zdraví <br>
+    {% for cat in categories %}
+        <input type="checkbox" onchange="onchange_callback({{cat[0]}});" id="category{{cat[0]}}"> {{ cat[1] }} <br>
+    {% endfor %}
 {% endblock %}
