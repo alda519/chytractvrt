@@ -2,25 +2,23 @@ import os
 import psycopg2
 from datetime import datetime
 from flask import Flask, request, flash, url_for, redirect, \
-     render_template, abort, send_from_directory
+     render_template, abort, send_from_directory, escape, g
 
 app = Flask(__name__)
 app.config.from_pyfile('flaskapp.cfg')
 
-"""
-g = None
 
 @app.before_request
 def before_request():
-    #g.db = psycopg2.connect(flask.config.DB_STR)
-    print(flask.config.DB_STR)
+    g.db = psycopg2.connect(app.config['DB_STR'])
+    g.sql = g.db.cursor()
 
 @app.teardown_request
 def teardown_request(exception):
-    db = getattr(g, db, None)
+    db = getattr(g, 'db', None)
     if db is not None:
         db.close()
-"""
+
 
 @app.route('/')
 @app.route('/mapa')
