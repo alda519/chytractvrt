@@ -21,11 +21,12 @@ def teardown_request(exception):
 
 
 @app.route('/')
-@app.route('/mapa')
-def index():
+@app.route('/mapa/')
+@app.route('/mapa/<action>')
+def index(action=None):
     g.sql.execute('select id, name from categories;')
     records = [(r[0], r[1].decode('utf8')) for r in g.sql.fetchall()]
-    return render_template('map.html', categories = records)
+    return render_template('map.html', categories = records, action = action)
 
 @app.route('/okoli')
 def okoli():
@@ -43,14 +44,45 @@ def domy():
 def mimoradne():
     return render_template('mimoradne.html')
 
+@app.route('/kontakt')
+def kontakt():
+    return render_template('kontakt.html')
+
+@app.route('/oprojektu')
+def oprojektu():
+    return render_template('oprojektu.html')
+
 
 @app.route('/points')
 @app.route('/points/<id>')
 def points(id=None):
     if request.method == 'POST':
-        # TODO update
-        return render_template('points.html')
+        # update
+        if id is not None: # request.form['id']:
+            sql = "update points set lat = {}, lng = {}, name = '{}' where id = {}".format(
+                escape(request.form['lat']),
+                escape(request.form['lng']),
+                escape(request.form['name']),
+                escape(request.form['id']),
+            )
+            return sql
+        # create
+        else:
+            sql = "insert (name, lat, lng, subcategory_id) into points values ({}, {}, {}, {})".format(
+                escape(request.form['name']),
+                escape(request.form['lat']),
+                escape(request.form['lng']),
+                escape(request.form['subcategory_id'])
+            )
+            return sql # return redirect(url_for('index'))
+    elif request.method == 'DELETE':
+        sql = "delete from points where id = {}".format(
+            escape(request.form['id'])
+        )
+        return sql
     else:
+        sql = "select name, lat, lng from points where subcategory_id = {}".format(id)
+        return sql
         # get 1 nebo seznam vsech
         if id is not None:
             return render_template('point.html')
@@ -62,11 +94,6 @@ def points(id=None):
 def serveStaticResource(resource):
     return send_from_directory('static/', resource)
 
-@app.route("/test")
-def test():
-    g.sql.execute('select * from categories;')
-    records = g.sql.fetchall()
-    return "<strong>It's Alive!</strong> " + (';'.join([str(x[1]) for x in records]))
 
 @app.route("/getpoints/<category>")
 def getpoints(category):

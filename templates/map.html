@@ -7,7 +7,22 @@
 {% endblock %}
 
 {% block yield %}
-    {% for cat in categories %}
-        <input type="checkbox" onchange="onchange_callback({{cat[0]}});" id="category{{cat[0]}}"> {{ cat[1] }} <br>
-    {% endfor %}
+
+    {% if action == 'new' %}
+
+        {% include 'form_point.html' %}
+
+    {% else %}
+
+        {% for cat in categories %}
+            <label><input type="checkbox" onchange="onchange_callback({{cat[0]}});" id="category{{cat[0]}}"> {{ cat[1] }}</label><br>
+        {% endfor %}
+
+        <p>
+        <form action="/mapa/new">
+            <input type="submit" value="Přidat nový podnik" style="position: absolute; bottom:20px; right: 20px">
+        </form>
+
+    {% endif %}
+
 {% endblock %}

@@ -1,3 +1,4 @@
 *.pyc
 FILES/*
 env/*
+*.swp
