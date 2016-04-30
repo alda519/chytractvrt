@@ -21,7 +21,7 @@ def teardown_request(exception):
 
 
 @app.route('/')
-@app.route('/mapa/')
+@app.route('/mapa', methods=['GET', 'POST'])
 @app.route('/mapa/<action>')
 def index(action=None):
     g.sql.execute('select id, name from categories;')
