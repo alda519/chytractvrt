@@ -99,8 +99,8 @@ def serveStaticResource(resource):
 def getpoints(category):
     g.sql.execute('select points.id, points.lat, points.lng, points.name, subcategories.icon from points left join subcategories on points.subcategory_id = subcategories.id left join categories on subcategories.category_id = categories.id where categories.id = {}'.format(int(category)))
     return "[" + ",".join(
-        ['{{"id": {}, "lat": {}, "lng": {}, "name": "{}", "cat": {}, "ico": {}}}'.format(
-            r[0], r[1], r[2], r[3], int(category), r[4] or '"images/marker-icon.png"'
+        ['{{"id": {}, "lat": {}, "lng": {}, "name": "{}", "cat": {}, "ico": "{}"}}'.format(
+            r[0], r[1], r[2], r[3], int(category), r[4] or 'images/marker-icon.png'
         ) for r in g.sql.fetchall()]
     ) + "]"
     # TODO cat?? ^^
