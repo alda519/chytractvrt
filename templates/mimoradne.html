@@ -7,5 +7,30 @@
 {% endblock %}
 
 {% block yield %}
-Mimořádné události
+<h1>Mimořádné události</h1>
+
+<style>
+.katastrofa { border: 1px solid #333; width: 90%; padding: 5px; margin-bottom: 20px;}
+</style>
+
+<div class="katastrofa"><b>Uzavírka silnice od 5. 4. do 15. 4.</b><br><br>Vozovka v ulici Oblá bude z důvodu oprav uzavřena...</div>
+
+<div class="katastrofa">...</div>
+
+<div class="katastrofa">...</div>
+
+
+<script>
+var cIcon = L.icon({ iconUrl: 'markers/mimoradne_udalosti/cervena2.png', shadowUrl: 'images/marker-shadow.png', iconSize:     [25, 41], shadowSize:   [41, 41], iconAnchor:   [12, 40], shadowAnchor: [12, 40], popupAnchor:  [9, -42] });
+marker = new L.marker([49.1761, 16.5566], {icon: cIcon});
+marker.addTo(map);
+marker = new L.marker([49.1793, 16.5612], {icon: cIcon});
+marker.addTo(map);
+marker = new L.marker([49.1794, 16.5533], {icon: cIcon});
+marker.addTo(map);
+marker = new L.marker([49.1751, 16.5540], {icon: cIcon});
+marker.addTo(map);
+</script>
+
+
 {% endblock %}
