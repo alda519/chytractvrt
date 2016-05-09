@@ -53,6 +53,7 @@ def oprojektu():
     return render_template('oprojektu.html')
 
 
+# WIP, tohle nic nedela
 @app.route('/points')
 @app.route('/points/<id>')
 def points(id=None):
@@ -111,6 +112,14 @@ def podnik1():
 @app.route("/podnik2")
 def podnik2():
     return render_template('podnik2.html')
+
+@app.route("/prihlaseni")
+def prihlaseni():
+    return render_template('prihlaseni.html')
+
+@app.route("/registrace")
+def registrace():
+    return render_template('registrace.html')
 
 
 if __name__ == '__main__':

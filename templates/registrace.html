@@ -1,0 +1,38 @@
+{% extends 'application.html' %}
+
+{% block title %}{{ super() }} - registrace{% endblock %}
+
+{% block head %}
+{{ super () }}
+{% endblock %}
+
+{% block content %}
+  <div class="row content">
+    <div class="left">
+    </div>
+
+    <div class="right">
+
+<h2>Registrace</h2>
+
+<p>
+<form action="/">
+Uživatelské jméno:<br>
+<input><br>
+Heslo:<br>
+<input type="password"><br>
+Heslo znovu:<br>
+<input type="password"><br>
+Email:<br>
+<input><br>
+<br>
+<input type="submit" value="Zaregistrovat se">
+</form>
+
+    </div>
+
+    <div class="left">
+    </div>
+  </div>
+{% endblock %}
+
