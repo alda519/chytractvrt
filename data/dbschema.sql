@@ -17,5 +17,6 @@ create table points (
     name varchar(128),
     lat float,
     lng float,
+    url varchar(128),
     subcategory_id integer references subcategories
 );

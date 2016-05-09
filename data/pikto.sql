@@ -59,3 +59,8 @@ update subcategories set icon = '' where name = 'Stomatologické laboratoře';
 update subcategories set icon = '' where name = 'Masáže';
 update subcategories set icon = '' where name = 'Kadeřnictví, kosmetika, pedikúra a manikúra';
 update subcategories set icon = '' where name = 'Centra';
+
+
+alter table points add url varchar(128);
+update points set url = '/podnik1' where name = 'Knihovna Jiřího Mahena v Brně';
+update points set url = '/podnik2' where name = 'Fitcentrum Kameňák';

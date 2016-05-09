@@ -97,14 +97,20 @@ def serveStaticResource(resource):
 
 @app.route("/getpoints/<category>")
 def getpoints(category):
-    g.sql.execute('select points.id, points.lat, points.lng, points.name, subcategories.icon from points left join subcategories on points.subcategory_id = subcategories.id left join categories on subcategories.category_id = categories.id where categories.id = {}'.format(int(category)))
+    g.sql.execute('select points.id, points.lat, points.lng, points.name, subcategories.icon, points.url from points left join subcategories on points.subcategory_id = subcategories.id left join categories on subcategories.category_id = categories.id where categories.id = {}'.format(int(category)))
     return "[" + ",".join(
-        ['{{"id": {}, "lat": {}, "lng": {}, "name": "{}", "cat": {}, "ico": "{}"}}'.format(
-            r[0], r[1], r[2], r[3], int(category), r[4] or 'images/marker-icon.png'
+        ['{{"id": {}, "lat": {}, "lng": {}, "name": "{}", "cat": {}, "ico": "{}", "url": "{}"}}'.format(
+            r[0], r[1], r[2], r[3], int(category), r[4] or 'images/marker-icon.png', r[5]
         ) for r in g.sql.fetchall()]
     ) + "]"
-    # TODO cat?? ^^
 
+@app.route("/podnik1")
+def podnik1():
+    return render_template('podnik1.html')
+
+@app.route("/podnik2")
+def podnik2():
+    return render_template('podnik2.html')
 
 
 if __name__ == '__main__':

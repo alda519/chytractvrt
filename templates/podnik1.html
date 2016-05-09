@@ -1,0 +1,35 @@
+{% extends 'application.html' %}
+
+{% block title %}{{ super() }} - interaktivní mapa{% endblock %}
+
+{% block head %}
+{{ super () }}
+{% endblock %}
+
+{% block yield %}
+<h1>Knihovna Jiřího Mahena - pobočka Nový Lískovec</h1>
+
+<p>
+<b>Adresa</b>: Oblá 518/75a, 634 00 Brno
+<p>
+<b>Otvírací doba</b>:
+<table>
+<tr><td>Po<td>13:00–18:00
+<tr><td>Út<td>10:00–12:00, 13:00–18:00
+<tr><td>Čt<td>10:00–12:00, 13:00–18:00
+</table>
+<p>
+<b>Telefon</b>: 547 223 589
+<p>
+<b>E-mail</b>: obla@kjm.cz
+<p>
+<b>Web</b>: <a href="http://www.kjm.cz/knihovna-provozy/novy-liskovec">http://www.kjm.cz/knihovna-provozy/novy-liskovec</a>
+
+<script>
+var cIcon = L.icon({ iconUrl: 'markers/knihovna.png', shadowUrl: 'images/marker-shadow.png', iconSize:     [25, 41], shadowSize:   [41, 41], iconAnchor:   [12, 40], shadowAnchor: [12, 40], popupAnchor:  [9, -42] });
+marker = new L.marker([49.17622, 16.55331], {icon: cIcon});
+marker.addTo(map);
+map.setView(new L.LatLng(49.17622, 16.55531), 16);
+</script>
+
+{% endblock %}
