@@ -7,5 +7,30 @@
 {% endblock %}
 
 {% block yield %}
-Zlepšit okolí
+<h1>Zlepšit okolí</h1>
+
+<p>
+Našli jste ve svém okolí problém, co Vám vadí, a chcete jej nahlásit? Pokusíme se o nápravu.
+
+<form action="/okoli">
+<p>
+Adresa:<br>
+<input><br>
+
+Popis problému:<br>
+<textarea rows="6" cols="50"></textarea><br>
+
+Nahrát fotografii:<br>
+<input type="file"><br>
+
+<p>
+Vaši připomínku prověříme, nechte nám prosím kontakt a my vám dámě vědět, jak to dopadlo.
+<p>
+Email/telefon:<br>
+<input><br>
+
+<p>
+<input type="submit" value="Odeslat">
+</form>
+
 {% endblock %}

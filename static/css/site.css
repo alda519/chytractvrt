@@ -35,6 +35,11 @@ body {
   flex: 1 1 auto;
 }
 
+.center {
+  flex: 0 1 80%;
+  padding: 20px;
+}
+
 .right {
   flex: 0 1 400px;
   padding: 20px;
@@ -63,10 +68,32 @@ p {
     box-shadow: 5px 5px 2px #444;
     border-radius: 0px 0px 5px;
     padding: 3px;
-    margin: 10px;
+    margin: 8px;
     text-decoration: none;
 }
 .header a:hover {
     box-shadow: 4px 4px 5px #ccc;
     padding: 3px;
+}
+
+.inzerat {
+    border: 1px solid #444;
+    box-shadow: 2px 2px 1px #444;
+    margin: 5px;
+    float: left;
+    height: 250px;
+    width: 250px;
+    padding: 4px;
+}
+
+@media screen and (min-width:800px){
+.inzerat {
+    width: 30%;
+}
+}
+
+@media screen and (min-width:1024px){
+.inzerat {
+    width: 22%;
+}
 }
